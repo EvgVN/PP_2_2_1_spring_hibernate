@@ -25,8 +25,8 @@ public class UserDaoImp implements UserDao {
       Car car = sessionFactory.getCurrentSession()
               .createQuery("FROM Car car LEFT OUTER JOIN FETCH car.user WHERE car.model =: model", Car.class)
               .setParameter("model", model).uniqueResult();
-      System.out.println(car.getUser().getFirstName());
-      System.out.println(car.getModel());
+      System.out.print("Car: " + car.getModel() + " -> ");
+      System.out.println("User: " + car.getUser().getFirstName());
    }
 
 
