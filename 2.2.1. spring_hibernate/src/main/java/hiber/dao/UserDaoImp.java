@@ -29,7 +29,6 @@ public class UserDaoImp implements UserDao {
     }
 
     public void getCarUser(String model, int series) {
-//        Car car = sessionFactory.getCurrentSession().createQuery("FROM Car car LEFT OUTER JOIN FETCH car.user WHERE car.model = :model AND car.series = :series", Car.class).setParameter("model", model).uniqueResult();
         String hql = "FROM Car car LEFT OUTER JOIN FETCH car.user WHERE car.model = :model AND car.series = :series";
         Car car = sessionFactory.getCurrentSession()
                 .createQuery(hql, Car.class)
