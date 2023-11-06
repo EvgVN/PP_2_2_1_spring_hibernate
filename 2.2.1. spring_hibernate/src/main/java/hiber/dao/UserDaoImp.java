@@ -37,9 +37,7 @@ public class UserDaoImp implements UserDao {
     public void deleteTables(AnnotationConfigApplicationContext context) {
         Session session = context.getBean(SessionFactory.class).openSession();
         session.beginTransaction();
-        String sql = "DROP TABLE IF EXISTS cars";
-        session.createSQLQuery(sql).executeUpdate();
-        sql = "DROP TABLE IF EXISTS users";
+        String sql = "DROP TABLE IF EXISTS cars, users";
         session.createSQLQuery(sql).executeUpdate();
         session.getTransaction().commit();
         session.close();
