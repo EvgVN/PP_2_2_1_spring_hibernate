@@ -9,6 +9,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import java.sql.SQLException;
 import java.util.List;
 
+//import hiber.service.UserServiceImp.deleteTables;
+
 public class MainApp {
    public static void main(String[] args) throws SQLException {
       AnnotationConfigApplicationContext context =
@@ -17,24 +19,25 @@ public class MainApp {
       UserService userService = context.getBean(UserService.class);
 
       User user1 = new User("User1", "Lastname1", "user1@mail.ru");
-      Car landCruiser = new Car("Toyota Land Cruiser", 200);
-      user1.setCar(landCruiser);
+      Car car1 = new Car("Car1", 1);
+      user1.setCar(car1);
+      userService.add(user1);
+
+
 
       User user2 = new User("User2", "Lastname2", "user2@mail.ru");
-      Car nissan = new Car("Nissan 400z", 400);
-      user2.setCar(nissan);
+      Car car2 = new Car("Car2", 2);
+      user2.setCar(car2);
+      userService.add(user2);
 
       User user3 = new User("User3", "Lastname3", "user3@mail.ru");
-      Car bmw = new Car("BMW 5-series", 500);
-      user3.setCar(bmw);
+      Car car3 = new Car("Car3", 3);
+      user3.setCar(car3);
+      userService.add(user3);
 
       User user4 = new User("User4", "Lastname4", "user4@mail.ru");
-      Car mb = new Car("Mercedes-benz", 300);
-      user4.setCar(mb);
-
-      userService.add(user1);
-      userService.add(user2);
-      userService.add(user3);
+      Car car4 = new Car("Car4", 4);
+      user4.setCar(car4);
       userService.add(user4);
 
       List<User> users = userService.listUsers();
@@ -47,8 +50,9 @@ public class MainApp {
          System.out.println();
       }
 
-      userService.getUserByCarModel("Nissan 400z");
+      userService.getCarUser("Car1");
 
+      userService.deleteTables(context);
 
       context.close();
    }
