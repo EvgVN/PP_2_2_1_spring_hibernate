@@ -10,7 +10,7 @@ public interface UserService {
 
     List<User> listUsers();
 
-    void getCarUser(String model);
+    void getCarUser(String model, int series);
 
     void deleteTables(AnnotationConfigApplicationContext context);
 }
