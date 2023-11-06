@@ -11,7 +11,6 @@ import java.io.Serializable;
 @Entity
 @Table(name = "cars")
 public class Car implements Serializable {
-
     @Id
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
@@ -58,6 +57,6 @@ public class Car implements Serializable {
 
     @Override
     public String toString() {
-        return model + " - " + series;
+        return "Model: " + model + "; " + "Series: " + series;
     }
 }

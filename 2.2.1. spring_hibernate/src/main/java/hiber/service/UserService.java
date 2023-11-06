@@ -8,9 +8,9 @@ import java.util.List;
 public interface UserService {
     void add(User user);
 
-    void getCarUser(String model);
-
     List<User> listUsers();
+
+    void getCarUser(String model);
 
     void deleteTables(AnnotationConfigApplicationContext context);
 }
