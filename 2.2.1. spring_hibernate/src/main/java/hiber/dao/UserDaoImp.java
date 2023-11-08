@@ -4,6 +4,7 @@ import hiber.model.Car;
 import hiber.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Repository;
@@ -28,18 +29,13 @@ public class UserDaoImp implements UserDao {
         return query.getResultList();
     }
 
-    public void getCarUser(String model, int series) {
-        String hql = "FROM Car car LEFT OUTER JOIN FETCH car.user WHERE car.model = :model AND car.series = :series";
-        Car car = sessionFactory.getCurrentSession()
-                .createQuery(hql, Car.class)
-                .setParameter("model", model)
-                .setParameter("series", series)
-                .uniqueResult();
-        if (car != null) {
-            System.out.println(car.getModel() + "-" + car.getSeries() + " user is: " + car.getUser().getFirstName() + " " + car.getUser().getLastName() + " " + car.getUser().getEmail());
-        } else {
-            System.out.println("No car found with model: " + model + " and series: " + series);
-        }
+    public String getCarUser(String model, int series) {
+        String hql = "SELECT car.user FROM Car car WHERE car.model = :model AND car.series = :series";
+        TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery(hql, User.class);
+        query.setParameter("model", model);
+        query.setParameter("series", series);
+        User user = ((Query<User>) query).uniqueResult();
+        return user != null ? user.toString() : "";
     }
 
     public void deleteTables(AnnotationConfigApplicationContext context) {

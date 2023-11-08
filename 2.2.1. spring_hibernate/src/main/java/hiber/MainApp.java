@@ -43,7 +43,7 @@ public class MainApp {
             System.out.println();
         }
 
-        userService.getCarUser("Car1", 1);
+        System.out.println(userService.getCarUser("Car1", 1));
 
         userService.deleteTables(context);
 
